@@ -22,17 +22,17 @@
                 </div>
             </div>
             <div class="panel panel-default" ng-show="currentTask != null">
-                <div class="panel-heading">#{{currentTask.id}}</div>
+                <div class="panel-heading"><span data-timer="1" class="pull-right"></span>#{{currentTask.id}}</div>
                 <div class="panel-body small">
-                    <h4 class="text-center" data-timer="1"></h4>
                     <p>{{currentTask.subject}}</p>
                     <button class="btn btn-block btn-success" ng-click="resetCurrentTask()">Выполнено</button>
                 </div>
             </div>
             <ul id="taskList" class="list-group" >
-                <li ng-repeat="(key,task) in tasks" ng-class="{'list-group-item-danger': task.priority.id == 7}" class="list-group-item">
-                    <p class="small"><span class="label label-default">#{{task.id}}</span> {{task.subject}}</p>
+                <li ng-repeat="(key,task) in tasks" class="list-group-item">
+                    <p class="small"><span ng-class="{true: 'label-danger', false: 'label-default'}[task.priority.id == 7]" class="label">#{{task.id}}</span> {{task.subject}}</p>
                     <button class="btn pull-right btn-default btn-xs" ng-click="toggleCurrentTask(key)"><span ng-class="{true: 'glyphicon-pause', false: 'glyphicon-play'}[task.id == currentTask.id]" class="glyphicon"></span></button>
+                    <a href="http://redmine.molodost.bz/issues/{{task.id}}" class="btn pull-left btn-default btn-xs" target="_blank"><span class="glyphicon glyphicon-comment"></span></a>
                     <div class="clearfix"></div>
                 </li>
             </ul>
