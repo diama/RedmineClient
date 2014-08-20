@@ -1,0 +1,3 @@
+var SettingsController = function($scope){
+
+};

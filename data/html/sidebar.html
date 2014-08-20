@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12" ng-controller="TasksController" style="padding-top: 20px;">
+            <div ng-show="showWaitMessage()">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        {{listStatus.statusText}}
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" ng-show="currentTask != null">
+                <div class="panel-heading">#{{currentTask.id}}</div>
+                <div class="panel-body small">
+                    <h4 class="text-center" data-timer="1"></h4>
+                    <p>{{currentTask.subject}}</p>
+                    <button class="btn btn-block btn-success" ng-click="resetCurrentTask()">Выполнено</button>
+                </div>
+            </div>
+            <ul id="taskList" class="list-group" >
+                <li ng-repeat="(key,task) in tasks" ng-hide="task.id == currentTask.id" class="list-group-item">
+                    <p class="small"><span class="label label-default">#{{task.id}}</span> {{task.subject}}</p>
+                    <button class="btn btn-block btn-default" ng-click="setCurrentTask(key)">В работу</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row" ng-show="false">
+        <div class="col-xs-12">
+            <div class="text-center">
+                <a href="#" class="small">Настройки</a>
+            </div>
+            <form role="form">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Redmine хост:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="http://">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Secure Key:</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Secure key">
+                </div>
+                <button type="submit" class="btn btn-default btn-block">Сохранить</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-1.11.1.js"></script>
+<script src="js/jquery.timer.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<!--<script src="js/bootstrap.min.js"></script>-->
+<script src="js/angular.js"></script>
+<script src="js/TaskController.js"></script>
+<script>
+    $(function(){
+        taskTimer = $('[data-timer=1]').timer({format : '{w}:{h}:{m}:{s}', stopVal : 24*60*60*31});
+    });
+</script>
+</body>
+</html>

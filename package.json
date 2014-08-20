@@ -1,0 +1,9 @@
+{
+  "name": "krmclient",
+  "title": "KRMClient v.0.1 Alfa",
+  "id": "jid1-TAnyxo3xfBB4Og",
+  "description": "Выводит список задач и ведет учет рабочего времени",
+  "author": "Damir Bedretdinov",
+  "license": "MPL 2.0",
+  "version": "0.1"
+}
