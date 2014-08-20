@@ -27,7 +27,8 @@ var TasksController = function ($scope) {
 
     taskScope = $scope;
 
-    $scope.setCurrentTask = function (id) {
+    $scope.toggleCurrentTask = function (id) {
+        $scope.resetCurrentTask();
         $scope.currentTask = $scope.tasks[id];
         taskTimer.startTimer();
     };

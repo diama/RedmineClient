@@ -30,9 +30,10 @@
                 </div>
             </div>
             <ul id="taskList" class="list-group" >
-                <li ng-repeat="(key,task) in tasks" ng-hide="task.id == currentTask.id" class="list-group-item">
+                <li ng-repeat="(key,task) in tasks" ng-class="{'list-group-item-danger': task.priority.id == 7}" class="list-group-item">
                     <p class="small"><span class="label label-default">#{{task.id}}</span> {{task.subject}}</p>
-                    <button class="btn btn-block btn-default" ng-click="setCurrentTask(key)">В работу</button>
+                    <button class="btn pull-right btn-default btn-xs" ng-click="toggleCurrentTask(key)"><span ng-class="{true: 'glyphicon-pause', false: 'glyphicon-play'}[task.id == currentTask.id]" class="glyphicon"></span></button>
+                    <div class="clearfix"></div>
                 </li>
             </ul>
         </div>
