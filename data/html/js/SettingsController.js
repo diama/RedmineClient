@@ -15,7 +15,8 @@ var SettingsController = function ($scope) {
     $scope.showConfigForm = false;
     $scope.config = {
         redmineHost: '',
-        redmineKey: ''
+        redmineKey: '',
+        currentUserId: ''
     };
 
     $scope.saveConfig = function(){
