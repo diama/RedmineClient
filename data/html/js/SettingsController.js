@@ -1,3 +1,6 @@
-var SettingsController = function($scope){
-
+var SettingsController = function ($scope) {
+    $scope.config = {
+        redmineHost: '',
+        redmineKey: ''
+    };
 };
