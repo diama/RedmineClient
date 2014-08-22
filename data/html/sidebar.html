@@ -38,21 +38,21 @@
             </ul>
         </div>
     </div>
-    <div class="row" ng-show="false">
+    <div class="row" ng-controller="SettingsController">
         <div class="col-xs-12">
             <div class="text-center">
-                <a href="#" class="small">Настройки</a>
+                <button class="btn btn-link btn-xs" ng-click="toggleConfigForm()">Настройки</button>
             </div>
-            <form role="form">
+            <form role="form" ng-show="showConfigForm == true">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Redmine хост:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="http://">
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="redmine.org" ng-model="config.redmineHost">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Secure Key:</label>
-                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Secure key">
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Secure key" ng-model="config.redmineKey">
                 </div>
-                <button type="submit" class="btn btn-default btn-block">Сохранить</button>
+                <button type="submit" class="btn btn-default btn-block" ng-click="saveConfig()">Сохранить</button>
             </form>
         </div>
     </div>
@@ -65,6 +65,7 @@
 <!--<script src="js/bootstrap.min.js"></script>-->
 <script src="js/angular.js"></script>
 <script src="js/TaskController.js"></script>
+<script src="js/SettingsController.js"></script>
 <script>
     $(function(){
         taskTimer = $('[data-timer=1]').timer({format : '{w}:{h}:{m}:{s}', stopVal : 24*60*60*31});
