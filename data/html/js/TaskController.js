@@ -17,6 +17,13 @@ addon.port.on('taskList', function (message) {
     taskScope.$apply();
 });
 
+addon.port.on('timePushed', function () {
+    if (taskScope.currentTask) {
+        taskScope.currentTask.showIcon = false;
+        taskScope.$apply();
+    }
+});
+
 var TasksController = function ($scope) {
     $scope.tasks = [];
     $scope.currentTask = null;
@@ -32,15 +39,31 @@ var TasksController = function ($scope) {
             $scope.resetCurrentTask();
         } else {
             $scope.resetCurrentTask();
-            $scope.currentTask = $scope.tasks[id];
+            var currentTask = {
+                id: $scope.tasks[id].id,
+                subject: $scope.tasks[id].subject,
+                startAt: new Date().getTime(),
+                showIcon: false
+            };
+
+            $scope.currentTask = currentTask;
             taskTimer.startTimer();
         }
     };
 
     $scope.resetCurrentTask = function() {
+        $scope.pushTime();
         taskTimer.resetTimer();
         $scope.currentTask = null;
     }
+
+    $scope.pushTime = function(){
+        if ($scope.currentTask && $scope.currentTask.id) {
+            $scope.currentTask.showIcon = true;
+            addon.port.emit('pushTime', $scope.currentTask);
+            $scope.currentTask.startAt = new Date().getTime();
+        }
+    };
 
     $scope.showWaitMessage = function(){
         if ($scope.listStatus.status == 'hide')  {
@@ -48,4 +71,8 @@ var TasksController = function ($scope) {
         }
         return true;
     }
+
+    setInterval(function(){
+        $scope.pushTime();
+    }, 1800000);
 }

@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="panel panel-default" ng-show="currentTask != null">
-                <div class="panel-heading"><span data-timer="1" class="pull-right"></span>#{{currentTask.id}}</div>
+                <div class="panel-heading"><span data-timer="1" class="pull-right"></span><span class="glyphicon glyphicon-floppy-save pull-right" ng-show="currentTask.showIcon == true"></span>#{{currentTask.id}}</div>
                 <div class="panel-body small">
                     <p>{{currentTask.subject}}</p>
                     <button class="btn btn-block btn-success" ng-click="resetCurrentTask()">Выполнено</button>
