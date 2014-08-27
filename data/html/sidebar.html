@@ -29,7 +29,7 @@
                 </div>
             </div>
             <ul id="taskList" class="list-group" >
-                <li ng-repeat="(key,task) in tasks" class="list-group-item">
+                <li ng-repeat="(key,task) in tasks" class="list-group-item" ng-class="{'list-group-item-success' : task.id == currentTask.id}">
                     <p class="small"><span ng-class="{true: 'label-danger', false: 'label-default'}[task.priority.id == 7]" class="label">#{{task.id}}</span> {{task.subject}}</p>
                     <button class="btn pull-right btn-default btn-xs" ng-click="toggleCurrentTask(key)"><span ng-class="{true: 'glyphicon-pause', false: 'glyphicon-play'}[task.id == currentTask.id]" class="glyphicon"></span></button>
                     <a href="http://redmine.molodost.bz/issues/{{task.id}}" class="btn pull-left btn-default btn-xs" target="_blank"><span class="glyphicon glyphicon-comment"></span></a>
